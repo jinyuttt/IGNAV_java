@@ -199,6 +199,7 @@ public final class IgnavConstants {
     public static final int INSS_NHC = 10;
     public static final int INSS_ODO = 11;
     public static final int INSS_RTS = 12;
+    public static final int INSS_MAGH = 13;
 
     public static final int NPOS = 5;
 

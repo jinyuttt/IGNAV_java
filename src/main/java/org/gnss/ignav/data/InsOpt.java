@@ -83,6 +83,7 @@ public class InsOpt {
     public InsAlign align;
     public InsZvOpt zvopt;
     public Odopt odopt;
+    public MagOpt magopt;
 
     public InsOpt() {
         this.ext = new GTime[16][2];
@@ -101,5 +102,6 @@ public class InsOpt {
         this.align = new InsAlign();
         this.zvopt = new InsZvOpt();
         this.odopt = new Odopt();
+        this.magopt = new MagOpt();
     }
 }

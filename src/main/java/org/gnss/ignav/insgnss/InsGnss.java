@@ -11,12 +11,14 @@ import org.gnss.ignav.data.Gmeas;
 import org.gnss.ignav.data.Imud;
 import org.gnss.ignav.data.InsOpt;
 import org.gnss.ignav.data.InsState;
+import org.gnss.ignav.data.Magd;
 import org.gnss.ignav.data.Odod;
 import org.gnss.ignav.ins.InsMech;
 import org.gnss.ignav.insaux.InsNhc;
 import org.gnss.ignav.insaux.InsOdo;
 import org.gnss.ignav.insaux.InsZaru;
 import org.gnss.ignav.insaux.InsZvu;
+import org.gnss.ignav.insaux.InsMagnetometer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -89,6 +91,14 @@ public class InsGnss {
 
     public int odo(Odod odoData, Imud imu) {
         return InsOdo.odo(opt, imu, odoData, ins);
+    }
+
+    public int magnetometer(Magd data) {
+        return InsMagnetometer.magnetometer(ins, opt, data);
+    }
+
+    public int magmodel(String file) {
+        return InsMagnetometer.magmodel(file);
     }
 
     public void initOdo() {
