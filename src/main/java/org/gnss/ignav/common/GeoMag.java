@@ -459,6 +459,7 @@ public final class GeoMag {
 
         double sd = 0.0;
         double cd = 1.0;
+        double r = elev;
         l = 1;
         n = 0;
         m = 1;
@@ -470,16 +471,14 @@ public final class GeoMag {
             argument = cc;
             dd = Math.sqrt(argument);
             argument = elev * (elev + 2.0 * dd) + (a2 * aa + b2 * bb) / cc;
-            double r = Math.sqrt(argument);
+            r = Math.sqrt(argument);
             cd = (elev + dd) / r;
             sd = (a2 - b2) / dd * slat * clat / r;
             aa = slat;
             slat = slat * cd - clat * sd;
             clat = clat * cd + aa * sd;
-            ratio = earthsRadius / r;
-        } else {
-            ratio = earthsRadius / elev;
         }
+        ratio = earthsRadius / r;
         argument = 3.0;
         aa = Math.sqrt(argument);
         p[1] = 2.0 * slat;
@@ -490,17 +489,6 @@ public final class GeoMag {
         q[2] = slat;
         q[3] = -3.0 * clat * slat;
         q[4] = aa * (slat * slat - clat * clat);
-
-        double r = 0;
-        if (coordSys == COORDSYS_GEODETIC) {
-            aa = a2 * clat * clat;
-            bb = b2 * slat * slat;
-            cc = aa + bb;
-            dd = Math.sqrt(cc);
-            argument = elev * (elev + 2.0 * dd) + (a2 * aa + b2 * bb) / cc;
-            r = Math.sqrt(argument);
-        }
-        ratio = earthsRadius / (r != 0 ? r : elev);
 
         for (k = 1; k <= npq; ++k) {
             if (n < m) {
